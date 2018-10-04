@@ -121,7 +121,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 
    	TFile output("../rootfiles/"+inputFilename+outfilename,"RECREATE");
-   	Nch_gen->Write()
+   	Nch_gen->Write();
 
 
 }
