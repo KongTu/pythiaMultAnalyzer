@@ -97,6 +97,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		int nParticles_process = 0;
 
 		if( event_process != 99 ) continue;
+		if( trueQ2 < 10 ) continue;
 
 		for(int j(0); j < nParticles; ++j ) {
 
@@ -108,7 +109,6 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			int status = particle->GetStatus();
 			double pt = particle->GetPt();
 			double eta = particle->GetEta();
-			//int charge = particle->GetCharge();
 
 			if( status != 1 ) continue;
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
