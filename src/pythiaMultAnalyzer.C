@@ -39,6 +39,7 @@
 #include "TGraphErrors.h"
 #include "TLorentzVector.h"
 #include "TBranchElement.h"
+#include "TLorentzRotation.h"
 
 #define PI            3.1415926
 
@@ -59,6 +60,22 @@
 using namespace erhic;
 using namespace std;
 
+TLorentzRotation BoostToHCM(TLorentzVector const &eBeam_lab,
+                            TLorentzVector const &pBeam_lab,
+                            TLorentzVector const &eScat_lab) {
+   TLorentzVector q_lab=eBeam_lab - eScat_lab;
+   TLorentzVector p_plus_q=pBeam_lab + q_lab;
+   // boost to HCM
+   TLorentzRotation boost=TLorentzRotation(-1.0*p_plus_q.BoostVector());
+   TLorentzVector pBoost=boost*pBeam_lab;
+   TVector3 axis=pBoost.BoostVector();
+   // rotate away y-coordinate
+   boost.RotateZ(-axis.Phi());
+   // rotate away x-coordinate
+   boost.RotateY(M_PI-axis.Theta());
+   return boost;
+}
+
 TH1D* Nch_gen = new TH1D("Nch_gen",";N_{ch}",200,0,200);
 TH1D* eta_gen = new TH1D("eta_gen",";#eta",200,-10,10);
 TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
@@ -74,6 +91,9 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 	// EventBeagle* event_beagle(NULL);
 
 	tree->SetBranchAddress("event", &event ); // Note &event, not event.
+
+	TLorentzVector ebeam(0,0,-27.,27.);
+	TLorentzVector pbeam(0,0,920,920);
 
 	for(int i(0); i < nEvents; ++i ) {
       
@@ -99,6 +119,11 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		if( event_process != 99 ) continue;
 		if( trueQ2 < 10 ) continue;
 
+		TLorentzVector scat_e;
+		TLorentzVector part4v;
+		TLorentzVector part4vStar;
+		TLorentzRotation boost_REC_HCM;
+
 		for(int j(0); j < nParticles; ++j ) {
 
 			const erhic::ParticleMC* particle = event->GetTrack(j);
@@ -109,15 +134,21 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			int status = particle->GetStatus();
 			double pt = particle->GetPt();
 			double eta = particle->GetEta();
+			int index = particle->GetIndex();
 
 			if( status != 1 ) continue;
+			if( index == 3 ) scat_e = particle->Get4Vector();
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
 			if( charge == 0 ) continue;
 			if( pt < 0.1 ) continue;
 			if( eta < 3.0 ) continue;
 
-			pt_gen->Fill( pt );
-			eta_gen->Fill( eta );
+			part4v = particle->Get4Vector();
+			boost_REC_HCM=BoostToHCM(ebeam,pbeam,scat_e);
+			part4vStar = boost_REC_HCM*part4v;
+
+			pt_gen->Fill( part4vStar.Pt() );
+			eta_gen->Fill( part4vStar.Eta() );
 
 			nParticles_process++;
 
