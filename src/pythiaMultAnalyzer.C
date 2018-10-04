@@ -84,9 +84,9 @@ TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
 void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 	TChain *tree = new TChain("EICTree");
-	tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
+	//tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
 	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-100.0.PDF=10800_1.root" );
-	
+
 	EventPythia* event(NULL);// = new EventPythia;
 
 	// EventBase* event(NULL);
@@ -95,7 +95,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 	tree->SetBranchAddress("event", &event ); // Note &event, not event.
 
 	TLorentzVector ebeam(0,0,-27.,27.);
-	TLorentzVector pbeam(0,0,920,920);
+	TLorentzVector pbeam(0,0,460,460);
 
 	for(int i(0); i < nEvents; ++i ) {
       
@@ -119,7 +119,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		int nParticles_process = 0;
 
 		if( event_process != 99 ) continue;
-		if( trueQ2 < 5 ) continue;
+		if( trueQ2 < 10 ) continue;
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
