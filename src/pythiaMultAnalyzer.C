@@ -103,10 +103,8 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			const erhic::ParticleMC* particle = event->GetTrack(j);
 
 			TParticlePDG* info = particle->Id().Info();
-			cout << " test " << info->Charge() << endl;
+			int charge = info->Charge();
 			int pdg = particle->GetPdgCode();
-						cout << "pdg " << pdg << endl;
-
 			int status = particle->GetStatus();
 			double pt = particle->GetPt();
 			double eta = particle->GetEta();
@@ -114,7 +112,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 			if( status != 1 ) continue;
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
-			//if( charge == 0 ) continue;
+			if( charge == 0 ) continue;
 			if( pt < 0.1 ) continue;
 			if( eta < 3.0 || eta > 5.0 ) continue;
 
