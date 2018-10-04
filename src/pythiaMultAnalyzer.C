@@ -114,7 +114,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
 			if( charge == 0 ) continue;
 			if( pt < 0.1 ) continue;
-			if( eta < 3.0 || eta > 5.0 ) continue;
+			if( eta < 3.0 ) continue;
 
 			pt_gen->Fill( pt );
 			eta_gen->Fill( eta );
