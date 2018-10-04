@@ -140,15 +140,16 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			if( index == 3 ) scat_e = particle->Get4Vector();
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
 			if( charge == 0 ) continue;
-			if( pt < 0.1 ) continue;
-			if( eta < 3.0 ) continue;
-
+			
 			part4v = particle->Get4Vector();
 			boost_REC_HCM=BoostToHCM(ebeam,pbeam,scat_e);
 			part4vStar = boost_REC_HCM*part4v;
 
 			pt_gen->Fill( part4vStar.Pt() );
 			eta_gen->Fill( part4vStar.Eta() );
+
+			if( pt < 0.1 ) continue;
+			if( eta < 3.0 ) continue;
 
 			nParticles_process++;
 
