@@ -104,8 +104,9 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 			TParticlePDG* info = particle->Id().Info();
 			cout << " test " << info->Charge() << endl;
-			cout << "pdg " << pdg << endl;
 			int pdg = particle->GetPdgCode();
+						cout << "pdg " << pdg << endl;
+
 			int status = particle->GetStatus();
 			double pt = particle->GetPt();
 			double eta = particle->GetEta();
