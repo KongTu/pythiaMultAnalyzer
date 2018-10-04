@@ -10,6 +10,9 @@
 #include <eicsmear/erhic/ParticleMC.h>
 #include <eicsmear/erhic/Pid.h>
 
+
+
+#include "TParticlePDG.h"
 #include "TString.h"
 #include "TF1.h"
 #include "TH1.h"
@@ -99,8 +102,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 			const erhic::ParticleMC* particle = event->GetTrack(j);
 
-
-			auto info = particle->Id().Info();
+			TParticlePDG* info = particle->Id().Info();
 			cout << " test " << info->Charge() << endl;
 			int pdg = particle->GetPdgCode();
 			int status = particle->GetStatus();
