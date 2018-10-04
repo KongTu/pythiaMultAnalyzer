@@ -103,11 +103,16 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			int status = particle->GetStatus();
 			double pt = particle->GetPt();
 			double eta = particle->GetEta();
+			int charge = particle->GetCharge();
 
 			if( status != 1 ) continue;
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
+			if( charge == 0 ) continue;
 			if( pt < 0.1 ) continue;
 			if( eta < 3.0 || eta > 5.0 ) continue;
+
+			pt_gen->Fill( pt );
+			eta_gen->Fill( eta );
 
 			nParticles_process++;
 
@@ -122,6 +127,8 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
    	TFile output("../rootfiles/"+inputFilename+outfilename,"RECREATE");
    	Nch_gen->Write();
+   	pt_gen->Write();
+   	eta_gen->Write();
 
 
 }
