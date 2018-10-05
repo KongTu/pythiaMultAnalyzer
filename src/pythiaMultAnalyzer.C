@@ -119,7 +119,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		int nParticles_process = 0;
 
 		if( event_process != 99 ) continue;
-		//if( trueQ2 < 10 ) continue;
+		if( trueQ2 < 10 ) continue;
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
@@ -150,6 +150,8 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			pt_gen->Fill( part4vStar.Pt() );
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
+
+			if( eta > 4 ) cout << "particle pid " << pdg << endl;
 
 			if( part4vStar.Pt() < 0.1 ) continue;
 			if( part4vStar.Eta() > 0.0 ) continue;
