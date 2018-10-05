@@ -85,7 +85,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 	TChain *tree = new TChain("EICTree");
 	//tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=0.10-10000.0.PDF=10800_1.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_1.root" );
 
 	EventPythia* event(NULL);// = new EventPythia;
 
