@@ -133,7 +133,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			TParticlePDG* info = particle->Id().Info();
 			int charge = info->Charge();
 			int pdg = particle->GetPdgCode();
-			int status = particle->GetStatus();
+			int status = info->Stable();
 			double pt = particle->GetPt();
 			double eta = particle->GetEta();
 			int index = particle->GetIndex();
