@@ -151,7 +151,9 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
 
-			if( eta > 4 ) cout << "particle pid " << pdg << endl;
+			if( eta > 4 ) {cout << "particle pid " << pdg << endl;
+			cout << "status " << status << endl;
+			}
 
 			if( part4vStar.Pt() < 0.1 ) continue;
 			if( part4vStar.Eta() > 0.0 ) continue;
