@@ -119,7 +119,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		int nParticles_process = 0;
 
 		if( event_process != 99 ) continue;
-		if( trueQ2 < 10 ) continue;
+		//if( trueQ2 < 10 ) continue;
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
