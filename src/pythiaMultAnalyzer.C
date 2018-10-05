@@ -84,8 +84,8 @@ TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
 void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 	TChain *tree = new TChain("EICTree");
-	tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
-	//tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_1.root" );
+	//tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_1.root" );
 
 	EventPythia* event(NULL);// = new EventPythia;
 
@@ -141,6 +141,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			if( status != 1 ) continue;
 			if( index == 3 ) scat_e = particle->Get4Vector();
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
+			if( fabs(pdg) != 211 && fabs(pdg) != 321 && fabs(pdg) != 2212 ) continue;
 			if( charge == 0 ) continue;
 			
 			part4v = particle->Get4Vector();
@@ -151,9 +152,6 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
 
-			if( eta > 4 ) {cout << "particle pid " << pdg << endl;
-			cout << "status " << status << endl;
-			}
 
 			if( part4vStar.Pt() < 0.1 ) continue;
 			if( part4vStar.Eta() > 0.0 ) continue;
