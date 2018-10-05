@@ -141,7 +141,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			if( status != 1 ) continue;
 			if( index == 3 ) scat_e = particle->Get4Vector();
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
-			if( fabs(pdg) != 211 && fabs(pdg) != 321 && fabs(pdg) != 2212 ) continue;
+			//if( fabs(pdg) != 211 && fabs(pdg) != 321 && fabs(pdg) != 2212 ) continue;
 			if( charge == 0 ) continue;
 			
 			part4v = particle->Get4Vector();
