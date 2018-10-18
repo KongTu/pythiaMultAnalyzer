@@ -86,6 +86,15 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 	TChain *tree = new TChain("EICTree");
 	//tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
 	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_1.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_2.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_3.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_4.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_5.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_6.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_7.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_8.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_9.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_10.root" );
 
 	EventPythia* event(NULL);// = new EventPythia;
 
@@ -141,7 +150,6 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			if( status != 1 ) continue;
 			if( index == 3 ) scat_e = particle->Get4Vector();
 			if( pdg == 22 || fabs(pdg) == 11 ) continue;
-			//if( fabs(pdg) != 211 && fabs(pdg) != 321 && fabs(pdg) != 2212 ) continue;
 			if( charge == 0 ) continue;
 			
 			part4v = particle->Get4Vector();
@@ -151,7 +159,6 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			pt_gen->Fill( part4vStar.Pt() );
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
-
 
 			if( part4vStar.Pt() < 0.1 ) continue;
 			if( part4vStar.Eta() > 0.0 ) continue;
