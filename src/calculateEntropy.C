@@ -20,7 +20,7 @@ void calculateEntropy(){
 
 
 	TFile* file = new TFile("../rootfiles/100k_CT10_pythia_multiplicity.root");
-	TH1D* Ntrk_gen = (TH1D*) file->Get("Ntrk_gen");
+	TH1D* Ntrk_gen = (TH1D*) file->Get("Nch_gen");
 	Ntrk_gen->Draw();
 
 }
