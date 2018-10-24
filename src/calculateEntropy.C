@@ -8,7 +8,10 @@
 #include <sstream>
 #include <iomanip>
 
-#include "RiceStyle.h"
+#include "TFile.h"
+#include "TH1.h"
+#include "TCanvas.h"
+
 
 using namespace std;
 
