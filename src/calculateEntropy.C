@@ -29,7 +29,7 @@ void calculateEntropy(){
 	for(int i = 0; i < Ntrk_gen->GetNbinsX(); i++){
 
 		double pn = Ntrk_gen->GetBinContent(i+1);
-
+		if( pn == 0. ) continue;
 		entropy += (-pn)*TMath::Log(pn);
 	}
 
