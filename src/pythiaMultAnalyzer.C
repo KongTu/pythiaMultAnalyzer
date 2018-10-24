@@ -76,7 +76,8 @@ TLorentzRotation BoostToHCM(TLorentzVector const &eBeam_lab,
    return boost;
 }
 
-TH1D* Nch_gen = new TH1D("Nch_gen",";N_{ch}",200,0,200);
+TH1D* Nch_gen_target = new TH1D("Nch_gen_target",";N_{ch}",200,0,200);
+TH1D* Nch_gen_current = new TH1D("Nch_gen_current",";N_{ch}",200,0,200);
 TH1D* etaStar_gen = new TH1D("etaStar_gen",";#eta",200,-10,10);
 TH1D* eta_gen = new TH1D("eta_gen",";#eta",200,-10,10);
 TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
@@ -126,10 +127,11 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		int struck_nucleon = event->nucleon;
 		
 		int nParticles_process = 0;
+		int nParticles_process_current = 0;
 
 		if( event_process != 99 ) continue;
-		if( trueQ2 < 10 || trueQ2 > 15 ) continue;
-		if( trueX < 0.0008 || trueX > 0.0012 ) continue;
+		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
+		if( trueX < 0.0009 || trueX > 0.0011 ) continue;
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
@@ -162,13 +164,17 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			eta_gen->Fill( eta );
 
 			if( part4vStar.Pt() < 0.1 ) continue;
-			if( part4vStar.Eta() > 0.0 ) continue;
-
-			nParticles_process++;
+			if( part4vStar.Eta() < 0.0 ) {
+				nParticles_process++;
+			}
+			if( part4vStar.Eta() > 0.0){
+				nParticles_process_current++;
+			}
 
 		} // end of particle loop
 
-		Nch_gen->Fill( nParticles_process );
+		Nch_gen_target->Fill( nParticles_process );
+		Nch_gen_current->Fill( nParticles_process_current );
 	}
 
 	TString outfilename;
@@ -176,7 +182,8 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 
    	TFile output("../rootfiles/"+inputFilename+outfilename,"RECREATE");
-   	Nch_gen->Write();
+   	Nch_gen_target->Write();
+   	Nch_gen_current->Write();
    	pt_gen->Write();
    	etaStar_gen->Write();
    	eta_gen->Write();
