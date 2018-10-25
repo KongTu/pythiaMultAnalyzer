@@ -140,7 +140,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
 		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
 		
-		int x_index = 0;
+		int x_index = -1;
 		for(int j = 0; j < 20; j++){
 
 			if(trueX > x_region[j] && trueX < x_region[j+1]) x_index = j;
@@ -189,7 +189,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			}
 
 		} // end of particle loop
-
+		if( index < 0 ) continue;
 		Nch_gen_target[x_index]->Fill( nParticles_process );
 		Nch_gen_current[x_index]->Fill( nParticles_process_current );
 	}
