@@ -76,11 +76,10 @@ TLorentzRotation BoostToHCM(TLorentzVector const &eBeam_lab,
    return boost;
 }
 
-TH1D* Nch_gen_target = new TH1D("Nch_gen_target",";N_{ch}",200,0,200);
-TH1D* Nch_gen_current = new TH1D("Nch_gen_current",";N_{ch}",200,0,200);
 TH1D* etaStar_gen = new TH1D("etaStar_gen",";#eta",200,-10,10);
 TH1D* eta_gen = new TH1D("eta_gen",";#eta",200,-10,10);
 TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
+
 
 void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
@@ -107,6 +106,17 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 	TLorentzVector ebeam(0,0,-27.,27.);
 	TLorentzVector pbeam(0,0,460,460);
 
+	TH1D* Nch_gen_target[21];
+	TH1D* Nch_gen_current[21];
+
+	double x_region[21];
+	for(int j = 0; j < 21; j++){
+
+		x_region[j] = 1e-5+j*5e-5;
+		Nch_gen_target[j] = new TH1D(Form("Nch_gen_target_%d",j),"",50,0,50);
+		Nch_gen_current[j] = new TH1D(Form("Nch_gen_current_%d",j),"",50,0,50);
+	}
+
 	for(int i(0); i < nEvents; ++i ) {
       
 		// Read the next entry from the tree.
@@ -128,10 +138,17 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		
 		int nParticles_process = 0;
 		int nParticles_process_current = 0;
+		
 
 		if( event_process != 99 ) continue;
 		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
-		if( trueX < 0.0009 || trueX > 0.0011 ) continue;
+		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
+		
+		const int x_index = 0;
+		for(int j = 0; j < 20; j++){
+
+			if(trueX > x_region[j] && trueX < x_region[j+1]) x_index = j;
+		}
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
@@ -163,7 +180,8 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
 
-			if( part4vStar.Pt() < 0.1 ) continue;
+			if( part4vStar.Pt() < 0.0 ) continue;
+			
 			if( part4vStar.Eta() < 0.0 ) {
 				nParticles_process++;
 			}
@@ -173,8 +191,8 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 		} // end of particle loop
 
-		Nch_gen_target->Fill( nParticles_process );
-		Nch_gen_current->Fill( nParticles_process_current );
+		Nch_gen_target[x_index]->Fill( nParticles_process );
+		Nch_gen_current[x_index]->Fill( nParticles_process_current );
 	}
 
 	TString outfilename;
@@ -182,8 +200,11 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 
    	TFile output("../rootfiles/"+inputFilename+outfilename,"RECREATE");
-   	Nch_gen_target->Write();
-   	Nch_gen_current->Write();
+   	for(int j = 0; j < 20; j++){
+		Nch_gen_target[j]->Write();
+	   	Nch_gen_current[j]->Write();
+   	}
+   	
    	pt_gen->Write();
    	etaStar_gen->Write();
    	eta_gen->Write();
