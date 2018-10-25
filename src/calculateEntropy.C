@@ -15,6 +15,8 @@
 
 using namespace std;
 
+double EE_lnxG[]={4.25524,3.73213,3.5477,3.43114,3.34513,3.27687,3.2199,3.17111,3.12832,3.09009,3.05559,3.02419,2.99528,2.96844,2.94342,2.91999,2.89798,2.87721,2.85753,2.83878};
+
 
 void calculateEntropy(){
 
@@ -47,5 +49,7 @@ void calculateEntropy(){
 	}
 
 	cout << "entropy_current is " << entropy_current << endl;
+
+
 
 }
