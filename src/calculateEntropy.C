@@ -27,8 +27,6 @@ void calculateEntropy(){
 	
 	Nch_gen_target->Scale(1.0/Nch_gen_target->Integral());
 	Nch_gen_current->Scale(1.0/Nch_gen_current->Integral());
-	
-	Nch_gen_current->Draw();
 
 	double entropy_target = 0.0;
 	for(int i = 0; i < Nch_gen_target->GetNbinsX(); i++){
@@ -50,6 +48,13 @@ void calculateEntropy(){
 
 	cout << "entropy_current is " << entropy_current << endl;
 
+	TH1D* hist_lnxG = new TH1D("hist_lnxG","",20,0.00001,0.001);
+	for(int j = 0; j < hist_lnxG->GetNbinsX(); j++){
 
+		hist_lnxG->SetBinContent(j+1, EE_lnxG[j]);
+
+	}
+
+	hist_lnxG->Draw();
 
 }
