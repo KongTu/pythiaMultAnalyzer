@@ -189,7 +189,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			}
 
 		} // end of particle loop
-		if( index < 0 ) continue;
+		if( x_index < 0 ) continue;
 		Nch_gen_target[x_index]->Fill( nParticles_process );
 		Nch_gen_current[x_index]->Fill( nParticles_process_current );
 	}
