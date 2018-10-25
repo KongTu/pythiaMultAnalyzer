@@ -136,10 +136,6 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		int nParticles = event->GetNTracks();
 		int struck_nucleon = event->nucleon;
 		
-		int nParticles_process = 0;
-		int nParticles_process_current = 0;
-		
-
 		if( event_process != 99 ) continue;
 		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
 		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
@@ -149,6 +145,9 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 			if(trueX > x_region[j] && trueX < x_region[j+1]) x_index = j;
 		}
+
+		int nParticles_process = 0;
+		int nParticles_process_current = 0;
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
