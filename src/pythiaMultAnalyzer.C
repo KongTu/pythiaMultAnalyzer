@@ -144,7 +144,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
 		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
 		
-		const int x_index = 0;
+		int x_index = 0;
 		for(int j = 0; j < 20; j++){
 
 			if(trueX > x_region[j] && trueX < x_region[j+1]) x_index = j;
