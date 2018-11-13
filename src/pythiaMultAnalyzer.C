@@ -329,10 +329,10 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 			if( part4vStar.Pt() < 0.0 ) continue;
 			
-			if( part4vStar.Eta() < 0.0 ) {
+			if( part4vStar.Eta() < -2.0 ) {
 				nParticles_process++;
 			}
-			if( part4vStar.Eta() > 0.0){
+			if( part4vStar.Eta() > 2.0){
 				nParticles_process_current++;
 			}
 
