@@ -327,12 +327,12 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
 
-			if( part4vStar.Pt() < 0.0 ) continue;
+			if( part4vStar.Pt() < 0.1 ) continue;
 			
-			if( part4vStar.Eta() < -2.0 ) {
+			if( part4vStar.Eta() < 0.0 ) {
 				nParticles_process++;
 			}
-			if( part4vStar.Eta() > 2.0){
+			if( part4vStar.Eta() > 0.0){
 				nParticles_process_current++;
 			}
 
