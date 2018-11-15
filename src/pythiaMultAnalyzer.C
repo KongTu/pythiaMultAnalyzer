@@ -274,8 +274,14 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		double trueW2 = event->GetTrueW2();
 		double trueX = event->GetTrueX();
 		double trueY = event->GetTrueY();
+		double trueNu = event->GetTrueNu();
+		double s_hat = event->GetHardS();
+		double t_hat = event->t_hat;
+		double u_hat = event->GetHardU();
+		double photon_flux = event->GetPhotonFlux();
 		int event_process = event->GetProcess();
 		int nParticles = event->GetNTracks();
+		int struck_nucleon = event->nucleon;
 		
 		//if( event_process != 99 ) continue;
 		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
@@ -321,7 +327,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
 
-			if( part4vStar.Pt() < 0.0 ) continue;
+			if( part4vStar.Pt() < 0.1 ) continue;
 			
 			if( part4vStar.Eta() < 0.0 ) {
 				nParticles_process++;
