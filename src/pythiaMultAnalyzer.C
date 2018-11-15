@@ -284,7 +284,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		int struck_nucleon = event->nucleon;
 		
 		if( event_process != 99 ) continue;
-		if( trueQ2 < 5 || trueQ2 > 6 ) continue;
+		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
 		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
 		
 		int x_index = -1;
@@ -327,7 +327,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
 
-			if( part4vStar.Pt() < 0.1 ) continue;
+			if( part4vStar.Pt() < 0.0 ) continue;
 			
 			if( part4vStar.Eta() < 0.0 ) {
 				nParticles_process++;
