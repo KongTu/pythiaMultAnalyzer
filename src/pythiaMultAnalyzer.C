@@ -283,7 +283,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		int nParticles = event->GetNTracks();
 		int struck_nucleon = event->nucleon;
 		
-		//if( event_process != 99 ) continue;
+		if( event_process != 99 ) continue;
 		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
 		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
 		
