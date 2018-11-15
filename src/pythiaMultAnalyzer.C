@@ -87,18 +87,16 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 	//tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
 	
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/LEPTO/lepto.ep.460x27events.root" );
-
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_1.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_2.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_3.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_4.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_5.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_6.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_7.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_8.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_9.root" );
-	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_10.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_1.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_2.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_3.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_4.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_5.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_6.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_7.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_8.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_9.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_10.root" );
 
 	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_11.root" );
 	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_12.root" );
@@ -252,7 +250,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 	tree->SetBranchAddress("event", &event ); // Note &event, not event.
 
-	TLorentzVector ebeam(0,0,-27.5,27.5);
+	TLorentzVector ebeam(0,0,-27.,27.);
 	TLorentzVector pbeam(0,0,460,460);
 
 	TH1D* Nch_gen_target[21];
