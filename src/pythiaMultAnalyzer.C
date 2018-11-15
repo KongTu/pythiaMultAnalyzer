@@ -87,49 +87,51 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 	//tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
 	
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_1.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_2.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_3.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_4.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_5.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_6.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_7.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_8.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_9.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_10.root" );
+	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/LEPTO/lepto.ep.460x27events.root" );
 
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_11.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_12.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_13.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_14.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_15.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_16.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_17.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_18.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_19.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_20.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_1.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_2.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_3.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_4.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_5.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_6.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_7.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_8.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_9.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_10.root" );
 
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_21.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_22.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_23.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_24.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_25.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_26.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_27.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_28.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_29.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_30.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_11.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_12.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_13.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_14.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_15.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_16.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_17.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_18.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_19.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_20.root" );
 
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_31.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_32.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_33.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_34.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_35.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_36.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_37.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_38.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_39.root" );
-	tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_40.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_21.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_22.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_23.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_24.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_25.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_26.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_27.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_28.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_29.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_30.root" );
+
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_31.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_32.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_33.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_34.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_35.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_36.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_37.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_38.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_39.root" );
+	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/condor/job1/output/pythia_PDF=10800_40.root" );
 
 	//tree->Add("/eicdata/eic0009/PYTHIA/ep/TREES/pythia.ep.27x920.5Mevents.1.RadCor=0.Q2-0.1.root" ); // Wild cards are allowed e.g. tree.Add("*.root" );
 	// tree->Add("/gpfs/mnt/gpfs02/eic/ztu/pythia_Q2_10_100_CT10/CT10_10M/pythia.ep.27x460.5Kevents.Q2=10.0-10000.0.PDF=10800_1.root" );
@@ -250,7 +252,7 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 
 	tree->SetBranchAddress("event", &event ); // Note &event, not event.
 
-	TLorentzVector ebeam(0,0,-27.,27.);
+	TLorentzVector ebeam(0,0,-27.5,27.5);
 	TLorentzVector pbeam(0,0,460,460);
 
 	TH1D* Nch_gen_target[21];
@@ -274,16 +276,10 @@ void pythiaMultAnalyzer(int nEvents, TString inputFilename ){
 		double trueW2 = event->GetTrueW2();
 		double trueX = event->GetTrueX();
 		double trueY = event->GetTrueY();
-		double trueNu = event->GetTrueNu();
-		double s_hat = event->GetHardS();
-		double t_hat = event->t_hat;
-		double u_hat = event->GetHardU();
-		double photon_flux = event->GetPhotonFlux();
 		int event_process = event->GetProcess();
 		int nParticles = event->GetNTracks();
-		int struck_nucleon = event->nucleon;
 		
-		if( event_process != 99 ) continue;
+		//if( event_process != 99 ) continue;
 		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
 		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
 		
