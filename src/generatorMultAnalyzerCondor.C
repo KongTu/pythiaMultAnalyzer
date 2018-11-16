@@ -197,7 +197,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 	outfilename = "_multiplicity.root";
 
 
-   	TFile output("../rootfiles/"+outputName+outfilename,"RECREATE");
+   	TFile output(outputName+outfilename,"RECREATE");
    	for(int j = 0; j < 20; j++){
 		Nch_gen_target[j]->Write();
 	   	Nch_gen_current[j]->Write();
