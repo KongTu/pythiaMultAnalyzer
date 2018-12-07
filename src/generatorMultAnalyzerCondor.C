@@ -98,11 +98,12 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 
 	tree->SetBranchAddress("event", &event ); // Note &event, not event.
 
-	TLorentzVector ebeam(0,0,-27.,27.);
+	TLorentzVector ebeam(0,0,-27.5,27.5);
 	TLorentzVector pbeam(0,0,460,460);
 
 	TH1D* Nch_gen_target[21];
 	TH1D* Nch_gen_current[21];
+	TH1D* Nch_gen_all[21];
 
 	double x_region[21];
 	for(int j = 0; j < 21; j++){
@@ -110,6 +111,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 		x_region[j] = 1e-5+j*5e-5;
 		Nch_gen_target[j] = new TH1D(Form("Nch_gen_target_%d",j),"",50,0,50);
 		Nch_gen_current[j] = new TH1D(Form("Nch_gen_current_%d",j),"",50,0,50);
+		Nch_gen_all[j] = new TH1D(Form("Nch_gen_all_%d",j),"",100,0,100);
 	}
 
 	for(int i(0); i < nEvents; ++i ) {
@@ -144,6 +146,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 
 		int nParticles_process = 0;
 		int nParticles_process_current = 0;
+		int nParticles_all = 0;
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
@@ -177,6 +180,8 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 
 			if( part4vStar.Pt() < 0.0 ) continue;
 			
+			nParticles_all++;
+
 			if( part4vStar.Eta() < 0.0 && part4vStar.Eta() > -1.5 ) {
 				nParticles_process++;
 			}
@@ -184,10 +189,12 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 				nParticles_process_current++;
 			}
 
+
 		} // end of particle loop
 		if( x_index >= 0 ){
 			Nch_gen_target[x_index]->Fill( nParticles_process );
 			Nch_gen_current[x_index]->Fill( nParticles_process_current );
+			Nch_gen_all[x_index]->Fill( nParticles_all );
 		} 
 		
 		
@@ -201,6 +208,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
    	for(int j = 0; j < 20; j++){
 		Nch_gen_target[j]->Write();
 	   	Nch_gen_current[j]->Write();
+	   	Nch_gen_all[j]->Write();
    	}
    	
    	pt_gen->Write();
