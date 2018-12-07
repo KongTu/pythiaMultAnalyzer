@@ -180,12 +180,13 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 
 			if( part4vStar.Pt() < 0.0 ) continue;
 			
-			nParticles_all++;
-
-			if( part4vStar.Eta() < 0.0 && part4vStar.Eta() > -1.5 ) {
+			if( part4vStar.Eta() < 4.0 && part4vStar.Eta() > -4.0 ){
+				nParticles_all++;
+			}
+			if( part4vStar.Eta() < 0.0 && part4vStar.Eta() > -4.0 ) {
 				nParticles_process++;
 			}
-			if( part4vStar.Eta() > 0.0 && part4vStar.Eta() < 1.5){
+			if( part4vStar.Eta() > 0.0 && part4vStar.Eta() < 4.0){
 				nParticles_process_current++;
 			}
 
