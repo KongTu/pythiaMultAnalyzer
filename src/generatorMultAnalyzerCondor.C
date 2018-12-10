@@ -134,7 +134,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 		int struck_nucleon = event->nucleon;
 		
 		if( event_process != 99 ) continue;
-		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
+		if( trueQ2 < 2 || trueQ2 > 3 ) continue;
 		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
 		
 		int x_index = -1;
@@ -180,13 +180,13 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 
 			if( part4vStar.Pt() < 0.0 ) continue;
 			
-			if( part4vStar.Eta() < 1.5 && part4vStar.Eta() > -1.5 ){
+			if( part4vStar.Eta() < 4.0 && part4vStar.Eta() > -4.0 ){
 				nParticles_all++;
 			}
-			if( part4vStar.Eta() < 0.0 && part4vStar.Eta() > -1.5 ) {
+			if( part4vStar.Eta() < 0.0 && part4vStar.Eta() > -4.0 ) {
 				nParticles_process++;
 			}
-			if( part4vStar.Eta() > 0.0 && part4vStar.Eta() < 1.5){
+			if( part4vStar.Eta() > 0.0 && part4vStar.Eta() < 4.0){
 				nParticles_process_current++;
 			}
 
