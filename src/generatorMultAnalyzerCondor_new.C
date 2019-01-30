@@ -186,7 +186,7 @@ void generatorMultAnalyzerCondor_new(int nEvents, TString inputName, TString out
 		} // end of particle loop
 		
 		for(int ieta = 0; ieta < 8; ieta++){
-			Nch_gen_all[eta_index]->Fill( nParticles_all[ieta] );
+			Nch_gen_all[ieta]->Fill( nParticles_all[ieta] );
 		}
 	}
 
