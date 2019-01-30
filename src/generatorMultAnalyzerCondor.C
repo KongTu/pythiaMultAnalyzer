@@ -110,7 +110,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 	TH1D* Nch_gen_current[21];
 	TH1D* Nch_gen_all[21];
 
-	TF1* f1 = new TF1("f1","TMath::Exp(x[0]-6.9)",-10,10,"");
+	TF1* f1 = new TF1("f1","TMath::Exp(x[0]-6.9)",-10,10);
 
 	double x_region[21];
 	for(int j = 0; j < 9; j++){
