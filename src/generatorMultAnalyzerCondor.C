@@ -135,7 +135,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 		
 		if( event_process != 99 ) continue;
 		if( trueQ2 < 2 || trueQ2 > 3 ) continue;
-		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
+		//if( trueX < 0.00001 || trueX > 0.01 ) continue;
 		
 		int x_index = -1;
 		int nParticles_all=0;
