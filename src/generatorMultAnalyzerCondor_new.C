@@ -169,15 +169,15 @@ void generatorMultAnalyzerCondor_new(int nEvents, TString inputName, TString out
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
 
-			if( part4vStar.Pt() < 0.0 ) continue;
+			if( pt < 0.0 ) continue;
 			
-			if( part4vStar.Eta() < 0.5 && part4vStar.Eta() > -0.5 ){
+			if( eta < 0.5 && eta > -0.5 ){
 				nParticles_all++;
 			}
-			if( part4vStar.Eta() < 0.0 && part4vStar.Eta() > -0.5 ) {
+			if( eta < 0.0 && eta > -0.5 ) {
 				nParticles_process++;
 			}
-			if( part4vStar.Eta() > 0.0 && part4vStar.Eta() < 0.5){
+			if( eta > 0.0 && eta < 0.5){
 				nParticles_process_current++;
 			}
 
