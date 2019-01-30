@@ -143,8 +143,6 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 		for(int j = 0; j < 6; j++){
 			
 			if(trueX > x_region[j] && trueX < x_region[j+1]) x_index = j;
-
-			if( trueX > x_region[0] && trueX > x_region[1] ) cout << "here. " << trueX << endl;
 		}
 
 		TLorentzVector scat_e;
