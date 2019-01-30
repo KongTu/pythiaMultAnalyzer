@@ -104,13 +104,15 @@ void generatorMultAnalyzerCondor_new(int nEvents, TString inputName, TString out
 	TH1D* Nch_gen_current[21];
 	TH1D* Nch_gen_all[21];
 
-	double x_region[21];
-	for(int j = 0; j < 1; j++){
+	for(int j = 0; j < 8; j++){
 
-		Nch_gen_target[j] = new TH1D(Form("Nch_gen_target_%d",j),"",100,0,100);
-		Nch_gen_current[j] = new TH1D(Form("Nch_gen_current_%d",j),"",100,0,100);
-		Nch_gen_all[j] = new TH1D(Form("Nch_gen_all_%d",j),"",200,0,200);
+		Nch_gen_target[j] = new TH1D(Form("Nch_gen_target_%d",j),"",50,0,50);
+		Nch_gen_current[j] = new TH1D(Form("Nch_gen_current_%d",j),"",50,0,50);
+		Nch_gen_all[j] = new TH1D(Form("Nch_gen_all_%d",j),"",50,0,50);
 	}
+
+	double eta_region[]={-4.0,-3.0,-2.0,-1.0,0.0,1.0,2.0,3.0,4.0};
+
 
 	for(int i(0); i < nEvents; ++i ) {
       
@@ -135,14 +137,17 @@ void generatorMultAnalyzerCondor_new(int nEvents, TString inputName, TString out
 		if( trueQ2 < 2 || trueQ2 > 3 ) continue;
 		//if( trueX < 0.00001 || trueX > 0.0011 ) continue;
 		
-		int nParticles_process = 0;
-		int nParticles_process_current = 0;
-		int nParticles_all = 0;
+		int nParticles_all[8];
+		for(int ieta = 0; ieta < 8; ieta++){
+			nParticles_all[ieta] = 0;
+		}
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
 		TLorentzVector part4vStar;
 		TLorentzRotation boost_REC_HCM;
+
+		int eta_index = 0;
 
 		for(int j(0); j < nParticles; ++j ) {
 
@@ -170,27 +175,19 @@ void generatorMultAnalyzerCondor_new(int nEvents, TString inputName, TString out
 			eta_gen->Fill( eta );
 
 			if( pt < 0.0 ) continue;
-			
-			if( eta < 0.5 && eta > -0.5 ){
-				nParticles_all++;
-			}
-			if( eta < 0.0 && eta > -0.5 ) {
-				nParticles_process++;
-			}
-			if( eta > 0.0 && eta < 0.5){
-				nParticles_process_current++;
+
+			for(int ieta = 0; ieta < 8; ieta++){
+				if(eta > eta_region[ieta] && eta < eta_region[ieta+1] ){
+					nParticles_all[ieta]++;
+				}
 			}
 
 
 		} // end of particle loop
 		
-		int x_index = 0;
-		Nch_gen_target[x_index]->Fill( nParticles_process );
-		Nch_gen_current[x_index]->Fill( nParticles_process_current );
-		Nch_gen_all[x_index]->Fill( nParticles_all );
-		
-		
-		
+		for(int ieta = 0; ieta < 8; ieta++){
+			Nch_gen_all[eta_index]->Fill( nParticles_all[ieta] );
+		}
 	}
 
 	TString outfilename;
@@ -198,9 +195,7 @@ void generatorMultAnalyzerCondor_new(int nEvents, TString inputName, TString out
 
 
    	TFile output(outputName+outfilename,"RECREATE");
-   	for(int j = 0; j < 1; j++){
-		Nch_gen_target[j]->Write();
-	   	Nch_gen_current[j]->Write();
+   	for(int j = 0; j < 8; j++){
 	   	Nch_gen_all[j]->Write();
    	}
    	
