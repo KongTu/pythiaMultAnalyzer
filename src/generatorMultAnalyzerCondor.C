@@ -80,8 +80,11 @@ TH1D* etaStar_gen = new TH1D("etaStar_gen",";#eta",200,-10,10);
 TH1D* eta_gen = new TH1D("eta_gen",";#eta",200,-10,10);
 TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
 
-double y_range[]={-3.22663,-2.53348,-1.61719,-0.518581,-0.00775528,0.685392,1.09086};
-double x_range[]={4e-5,8e-5,2e-4,6e-4,1e-3,2e-3,3e-3};
+// double y_range[]={-3.22663,-2.53348,-1.61719,-0.518581,-0.00775528,0.685392,1.09086};
+// double x_range[]={4e-5,8e-5,2e-4,6e-4,1e-3,2e-3,3e-3};
+
+double y_range[]={-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5};
+double x_range[8];
 
 void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputName ){
 
@@ -107,9 +110,12 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 	TH1D* Nch_gen_current[21];
 	TH1D* Nch_gen_all[21];
 
-	double x_region[21];
-	for(int j = 0; j < 7; j++){
+	TF1* f1 = new TF1("f1","TMath::Exp(x[0]-6.9)",-10,10,"");
 
+	double x_region[21];
+	for(int j = 0; j < 9; j++){
+
+		x_range[j] = f1->Eval(y_range[j]);
 		x_region[j] = x_range[j];
 		Nch_gen_all[j] = new TH1D(Form("Nch_gen_all_%d",j),"",50,0,50);
 	}
@@ -140,7 +146,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 		int x_index = -1;
 		int nParticles_all=0;
 
-		for(int j = 0; j < 6; j++){
+		for(int j = 0; j < 8; j++){
 			
 			if(trueX > x_region[j] && trueX < x_region[j+1]) x_index = j;
 		}
@@ -195,7 +201,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 
 
    	TFile output(outputName+outfilename,"RECREATE");
-   	for(int j = 0; j < 6; j++){
+   	for(int j = 0; j < 8; j++){
 	   	Nch_gen_all[j]->Write();
    	}
    	
