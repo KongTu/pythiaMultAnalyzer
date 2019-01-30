@@ -84,7 +84,7 @@ TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
 // double x_range[]={4e-5,8e-5,2e-4,6e-4,1e-3,2e-3,3e-3};
 
 double y_range[]={-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5};
-double x_range[7];
+double x_range[8];
 
 void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputName ){
 
