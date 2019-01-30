@@ -80,6 +80,8 @@ TH1D* etaStar_gen = new TH1D("etaStar_gen",";#eta",200,-10,10);
 TH1D* eta_gen = new TH1D("eta_gen",";#eta",200,-10,10);
 TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
 
+double y_range[]={-4.61293,-3.22663,-2.53348,-1.61719,-0.518581,-0.00775528,1.60168};
+double x_range[]={1e-5,4e-5,8e-5,2e-4,6e-4,1e-3,5e-3};
 
 void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputName ){
 
@@ -106,12 +108,10 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 	TH1D* Nch_gen_all[21];
 
 	double x_region[21];
-	for(int j = 0; j < 21; j++){
+	for(int j = 0; j < 7; j++){
 
-		x_region[j] = 1e-5+j*5e-5;
-		Nch_gen_target[j] = new TH1D(Form("Nch_gen_target_%d",j),"",50,0,50);
-		Nch_gen_current[j] = new TH1D(Form("Nch_gen_current_%d",j),"",50,0,50);
-		Nch_gen_all[j] = new TH1D(Form("Nch_gen_all_%d",j),"",100,0,100);
+		x_region[j] = x_range[j];
+		Nch_gen_all[j] = new TH1D(Form("Nch_gen_all_%d",j),"",50,0,50);
 	}
 
 	for(int i(0); i < nEvents; ++i ) {
@@ -138,15 +138,12 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 		if( trueX < 0.00001 || trueX > 0.0011 ) continue;
 		
 		int x_index = -1;
+		int nParticles_all=0;
 
-		for(int j = 0; j < 20; j++){
-
+		for(int j = 0; j < 6; j++){
+			
 			if(trueX > x_region[j] && trueX < x_region[j+1]) x_index = j;
 		}
-
-		int nParticles_process = 0;
-		int nParticles_process_current = 0;
-		int nParticles_all = 0;
 
 		TLorentzVector scat_e;
 		TLorentzVector part4v;
@@ -178,23 +175,15 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 			etaStar_gen->Fill( part4vStar.Eta() );
 			eta_gen->Fill( eta );
 
-			if( part4vStar.Pt() < 0.0 ) continue;
+			if( pt < 0.0 ) continue;
 			
-			if( part4vStar.Eta() < 0.5 && part4vStar.Eta() > -0.5 ){
+			if( eta > y_range[x_index] && eta < y_range[x_index+1] ){
 				nParticles_all++;
-			}
-			if( part4vStar.Eta() < 0.0 && part4vStar.Eta() > -0.5 ) {
-				nParticles_process++;
-			}
-			if( part4vStar.Eta() > 0.0 && part4vStar.Eta() < 0.5){
-				nParticles_process_current++;
 			}
 
 
 		} // end of particle loop
 		if( x_index >= 0 ){
-			Nch_gen_target[x_index]->Fill( nParticles_process );
-			Nch_gen_current[x_index]->Fill( nParticles_process_current );
 			Nch_gen_all[x_index]->Fill( nParticles_all );
 		} 
 		
@@ -206,9 +195,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 
 
    	TFile output(outputName+outfilename,"RECREATE");
-   	for(int j = 0; j < 20; j++){
-		Nch_gen_target[j]->Write();
-	   	Nch_gen_current[j]->Write();
+   	for(int j = 0; j < 6; j++){
 	   	Nch_gen_all[j]->Write();
    	}
    	
