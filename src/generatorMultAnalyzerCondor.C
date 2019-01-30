@@ -140,7 +140,7 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 		int struck_nucleon = event->nucleon;
 		
 		if( event_process != 99 ) continue;
-		if( trueQ2 < 2 || trueQ2 > 3 ) continue;
+		if( trueQ2 < 10 || trueQ2 > 11 ) continue;
 		//if( trueX < 0.00001 || trueX > 0.01 ) continue;
 		
 		int x_index = -1;
