@@ -80,8 +80,8 @@ TH1D* etaStar_gen = new TH1D("etaStar_gen",";#eta",200,-10,10);
 TH1D* eta_gen = new TH1D("eta_gen",";#eta",200,-10,10);
 TH1D* pt_gen = new TH1D("pt_gen",";p_{T} (GeV/c)",200,0,20);
 
-double y_range[]={-4.61293,-3.22663,-2.53348,-1.61719,-0.518581,-0.00775528,1.60168};
-double x_range[]={1e-5,4e-5,8e-5,2e-4,6e-4,1e-3,5e-3};
+double y_range[]={-3.22663,-2.53348,-1.61719,-0.518581,-0.00775528,0.685392,1.09086};
+double x_range[]={4e-5,8e-5,2e-4,6e-4,1e-3,2e-3,3e-3};
 
 void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputName ){
 
@@ -143,6 +143,8 @@ void generatorMultAnalyzerCondor(int nEvents, TString inputName, TString outputN
 		for(int j = 0; j < 6; j++){
 			
 			if(trueX > x_region[j] && trueX < x_region[j+1]) x_index = j;
+
+			if( trueX > x_region[0] && trueX > x_region[1] ) cout << "here. " << trueX << endl;
 		}
 
 		TLorentzVector scat_e;
